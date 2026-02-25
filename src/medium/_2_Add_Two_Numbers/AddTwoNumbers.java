@@ -32,9 +32,30 @@ public class AddTwoNumbers {
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int val = l1.val;
-        int val2 = l2.val;
-        
-        return null;
+        ListNode result = new ListNode();
+        ListNode cur = result;
+
+        int curry = 0;
+        while (l1 != null || l2 != null) {
+            int sum = 0 + curry;
+
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            curry = sum / 10;
+            sum = sum % 10;
+            cur.next = new ListNode(sum);
+            cur = cur.next;
+        }
+
+        if (curry == 1) cur.next = new ListNode(1);
+
+        return result.next;
     }
 }
